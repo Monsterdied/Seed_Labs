@@ -1,9 +1,9 @@
 
 Breve descrição do grupo
 
-* Turno: [L]XX
-* Grupo: YY
+* Turno: [l]05
+* Grupo: 05
 * Alunos:
-    - Aluno1 upZZZZZ 
-    - Aluno2 upZZZZZ
-    - Aluno3 upZZZZZ
+    - Diogo Sarmento up202109663
+    - Rodrigo Póvoa up202108890
+    - Tomás Sarmento up202108778
