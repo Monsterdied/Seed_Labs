@@ -1,4 +1,3 @@
-
 # Spectre
 
 ## Identificação
@@ -11,7 +10,7 @@
 ## Catalogação
 
 - Spectre foi descoberto independentemente por duas pessoas Jann Horn (Google Project Zero) e Paul Kocher em colaboração com várias pessoas depois dos fornecedores de hardware afetados serem notificados da vulnerabilidade em 1 de junho 2017 foi reportado ao público em 3 de janeiro 2018.
-- De acordo com a NVD o nivel de gravidade desta vulnerabilidade é medio tendo uma pontuação de 5.6 em 10
+- De acordo com a NVD (National Vulnerability Database) o nivel de gravidade desta vulnerabilidade é medio tendo uma pontuação de 5.6 em 10
 
 
 ## Exploit
