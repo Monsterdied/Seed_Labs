@@ -17,14 +17,15 @@
  done what he asks
 
 ## task 5 
+
 ![dependencies](/Images/print1.png)
 ![dependencies](/Images/print2.png)
--  quando altera se o path a maior parte das funcoes do terminal
+-  quando se altera o path a maior parte das funcoes do terminal
 
 ![dependencies](/Images/Captura_de_ecrã_2023-10-11_232303.png)
  para de funcionar ate que se volte a dar set do PATH correto
+
  ![dependencies](/Images/print5.png)
- do path correto a mudança ocorre quando se corre o codigo da task 2
 
 depois de repor as variaveis de ambiente as funçoes do terminal 
 a maior parte voltou a funcionar
