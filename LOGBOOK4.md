@@ -44,9 +44,11 @@ a maior parte voltou a funcionar
 
 ## task6
 
-- para 
+- para fazer a função correr a minha função ls nos alteramos a pasta das variaveis de ambiente pelo menos a que tem mais prioridade para Desktop/new_env onde criei um codigo em c que da print hacked depois de compilado com o nome ls
 
 ![dependencies](/Images/print5.png)
+
+- depois de executado ele utiliza o meu ls pois o linux procura a função ls e encontra a minha antes da outra devido a prioridade do path que nos colocamos
 
 ![dependencies](/Images/print4.png)
 
