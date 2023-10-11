@@ -17,25 +17,32 @@
  done what he asks
 
 ## task 5 
+
 ![dependencies](/Images/print1.png)
 -  quando altera se o path a maior parte das funcoes do terminal
-![dependencies](/Images/print2.png)
- para de funcionar ate que se volte a dar set do PATH correto
- ![dependencies](/Images/print5.png)
- do path correto a mudança ocorre quando se corre o codigo da task 2
 
-depois de repor as variaveis de ambiente as funçoes do terminal 
+![dependencies](/Images/print2.png)
+
+- para de funcionar ate que se volte a dar set do PATH correto
+
+
+
+- do path correto a mudança ocorre quando se corre o codigo da task 2 depois de repor as variaveis de ambiente as funçoes do terminal 
 a maior parte voltou a funcionar
 
-quando se adicionam as variaveis de ambiente ANY e quando se altera a variavel de ambiente PATH elas aparecem quando nos utilizamos o codigo da task2 mas quando se adiciona a variavel LD_LIBRABRY_PATH ela não aparece mas quando se utiliza o codigo printenv encontra-se a variavel que criamos com o respetivo path pois o printenv roda no processo enquanto que o codigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variavel de ambiente LD_LIBRABRY_PATH
+![dependencies](/Images/Captura_de_ecrã_2023-10-11_232522.png)
 
+- Quando se adicionam as variaveis de ambiente ANY e quando se altera a variavel de ambiente PATH elas aparecem quando nos utilizamos o codigo da task2 mas quando se adiciona a variavel LD_LIBRABRY_PATH ela não aparece mas quando se utiliza o codigo printenv encontra-se a variavel que criamos com o respetivo path pois o printenv roda no processo enquanto que o codigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variavel de ambiente LD_LIBRABRY_PATH
+
+
+![dependencies](/Images/print3.png)
 
 
 
 ## task6
+![dependencies](/Images/print5.png)
 ![dependencies](/Images/Captura_de_ecrã_2023-10-11_232303.png)
-![dependencies](/Images/Captura_de_ecrã_2023-10-11_232522.png)
 
-![dependencies](/Images/print3.png)
+
 ![dependencies](/Images/print4.png)
 
