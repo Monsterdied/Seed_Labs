@@ -2,55 +2,52 @@
 
 ## Identificação
 
-## task 2
-- os ficheiros são iguais
-    pois a diferença do codigo é se o codigo é utilizado pelo processo principal (pai)
-    ou pelo filho (child) e as variaveis de ambiente tanto do pai como do filho são as mesmas
+### Task 2
 
-## task 3
-- envp is an array of pointers to strings, conventionally of the
-       form key=value, which are passed as the environment of the new
-       program.
-       if envp is null there are no ambient variables
-## task 4
+- Os ficheiros são iguais pois ambos os processos são executados no mesmo ambiente, logo vão ter as mesmas variáveis de ambiente.
 
- done what he asks
+### Task 3
 
-## task 5 
+- envp é um array de pointers para string , convencionalmente da forma chave = value, que são passados como ambiente do novo programa. Se envp é null não há variáveis de ambiente.
 
+### Task 4
 
--  quando se altera o path a maior parte das funcoes do terminal para de funcionar ate que se volte a dar set do PATH correto
+ Foi feito o que foi pedido.
+
+### Task 5 
+
+-  Quando se altera o PATH variable, a maior parte das funcões do terminal para de funcionar ate que se volte a dar set do PATH correto.
 
 ![dependencies](/Images/print1.png)
 
 
-- depois de repor as variaveis de ambiente as funçoes do terminal 
-a maior parte voltou a funcionar
+- Depois de repor as variáveis de ambiente, as funções do terminal 
+voltaram a funcionar
 
 
 ![dependencies](/Images/print2.png)
 
 ![dependencies](/Images/Captura_de_ecrã_2023-10-11_232522.png)
 
--   quando se adicionam as variaveis de ambiente ANY e quando se altera a variavel de ambiente PATH elas aparecem quando nos utilizamos o codigo da task2 mas quando se adiciona a variavel LD_LIBRABRY_PATH ela não aparece mas quando se utiliza o codigo printenv encontra-se a variavel que criamos com o respetivo path 
+-   Quando se adicionam as variáveis de ambiente ANY e quando se altera a variável de ambiente PATH elas aparecem quando nós utilizamos o código da task2 mas quando se adiciona a variável LD_LIBRABRY_PATH ela não aparece, mas quando se utiliza o codigo printenv encontra-se a variável que criamos com o respetivo path. 
 
 
 ![dependencies](/Images/Captura_de_ecrã_2023-10-11_232303.png)
 
-- pois o printenv roda no processo em que criamos a nova variavel de ambiente enquanto que o codigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variavel de ambiente LD_LIBRABRY_PATH
+- Pois o printenv roda no processo em que criamos a nova variável de ambiente enquanto que o cdigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variável de ambiente LD_LIBRABRY_PATH
 
 ![dependencies](/Images/print3.png)
 
 
-## task6
+### Task6
 
 ![dependencies](/Images/print4.png)
 
-- para fazer a função correr a minha função ls nos alteramos a pasta das variaveis de ambiente pelo menos a que tem mais prioridade para Desktop/new_env onde criei um codigo em c que da print hacked depois de compilado com o nome ls
+- Para fazer a função correr a minha função ls, nós alteramos o path para Desktop/new_env onde criei um código em c que dá print hacked depois de compilado com o nome ls.
 
 ![dependencies](/Images/print5.png)
 
-- depois de executado ele utiliza o meu ls pois o linux procura a função ls e encontra a minha antes da outra devido a prioridade do path que nos colocamos
+- Depois de executado ele utiliza o meu ls pois o linux procura a função ls e encontra a minha antes da outra devido à prioridade do path que nós colocamos.
 
 
 
