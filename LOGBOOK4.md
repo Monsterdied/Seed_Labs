@@ -26,13 +26,26 @@
 ### Task 3
 
 - envp é um array de pointers para string , convencionalmente da forma chave = value, que são passados como ambiente do novo programa. Se envp é null as variaveis de ambiente do programa anterior não serão passadas para o excve não tendo variaveis de ambiente para representar quando o comando correr.
+#### **myenv**
+```c
+#include <unistd.h>
+extern char **environ;
+int main()
+{
+char *argv[2];
+argv[0] = "/usr/bin/env";
+argv[1] = NULL;
+execve("/usr/bin/env", argv, environ); ➀
+retur
+```
 
+#### **Terminal**
 ![diferences_of_execev](/Images/diference_from_execev.png)
 ### Task 4
 
 - quando executamos o codigo mysyms.c verificamos que são passadas as variaveis de ambiente do processo anterior pois o system cria um novo processo que vai buscar as variaveis a execução do system difere da execução do mesmo comando com o excve.
 - ja a task anterior utiliza o para executar excve() utiliza as variaveis de anbiente do processo atual se forem fornecidas como argumento na sua execução.
-### **mysyms.c**
+#### **mysyms.c**
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,7 +57,7 @@ int main()
 }
 
 ```
-### **Terminal**
+#### **Terminal**
 ![dependencies](/Images/terminal_mysysms.png)
 
 
