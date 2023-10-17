@@ -27,7 +27,23 @@
 
 ### Task 4
 
-- Foi feito o que foi pedido.
+- quando executamos o codigo mysyms.c verificamos que são passadas as variaveis de ambiente do processo anterior pois o system cria um novo processo que vai buscar as variaveis ao processo anterior 
+### **mysyms.c**
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    system("/usr/bin/env");
+    return 0 ;
+}
+
+```
+### **Terminal**
+![dependencies](/Images/terminal_mysysms.png)
+
+- ja a task anterior utiliza o para executar excv() utiliza as variaveis de anbiente do processo atual se forem fornecidas como argumento na sua execução
 
 ### Task 5 
 
