@@ -4,7 +4,7 @@
 
 ### Task 2
 
-- Os ficheiros são iguais pois ambos os processos são executados no mesmo ambiente, logo vão ter as mesmas variáveis de ambiente.
+- Os ficheiros são iguais pois ambos os processos são executados no mesmo ambiente, pois as variaveis de ambiente são erdadas do processo anterior.
 
 ### Task 3
 
