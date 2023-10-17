@@ -9,15 +9,15 @@
 ### Task 2
 - Começamos por compilar e rodar o código que nos dá as variaveis do child process e guardamos num ficheiro
 
-![dependencies](week4-task2-0.png)
+![dependencies](/Images/week4-task2-0.png)
 
 - De Seguida modificamos o codigo para nos dar as variaveis do Parent process e guardamos num ficheiro diferente
 
-![dependencies](week4-task2-1.png)
+![dependencies](/Images/week4-task2-1.png)
 
 - Por fim comparamos os dois ficheiros com o codigo diff
 
-![dependencies](week4-task2-2.png)
+![dependencies](/Images/week4-task2-2.png)
 
 - Como observamos os ficheiros são iguais assim as variaveis de ambiente do child são herdadas do pai
 
