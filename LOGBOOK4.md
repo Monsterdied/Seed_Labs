@@ -2,14 +2,24 @@
 
 ## Identificação
 ### Taks 1
-```
-    printenv
-```
+
+- Usar printenv permite listar todas as variaveis de ambiente
+- Usar export adicionar variaveis de ambiente e unset remove variaveis de ambiente
 
 ### Task 2
-- começamos por compilar e rodar o código que nos dá as variaveis do child process e guardamos num ficheiro
+- Começamos por compilar e rodar o código que nos dá as variaveis do child process e guardamos num ficheiro
 
-- Os ficheir são iguais pois ambos os processos são executados no mesmo ambiente, pois as variaveis de ambiente são gerdadas do processo anterior.
+![dependencies](week4-task2-0.png)
+
+- De Seguida modificamos o codigo para nos dar as variaveis do Parent process e guardamos num ficheiro diferente
+
+![dependencies](week4-task2-1.png)
+
+- Por fim comparamos os dois ficheiros com o codigo diff
+
+![dependencies](week4-task2-2.png)
+
+- Como observamos os ficheiros são iguais assim as variaveis de ambiente do child são herdadas do pai
 
 ### Task 3
 
