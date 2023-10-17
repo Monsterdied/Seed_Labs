@@ -25,23 +25,31 @@
 
 ### Task 3
 
-- envp é um array de pointers para string , convencionalmente da forma chave = value, que são passados como ambiente do novo programa. Se envp é null as variaveis de ambiente do programa anterior não serão passadas para o excve não tendo variaveis de ambiente para representar quando o comando correr.
-#### **myenv**
-```c
-#include <unistd.h>
-extern char **environ;
-int main()
+- Começamos por compilar e rodar o codigo abaixo
+```int main()
 {
-char *argv[2];
-argv[0] = "/usr/bin/env";
-argv[1] = NULL;
-execve("/usr/bin/env", argv, environ);
-return 0;
+  char *argv[2];
+
+  argv[0] = "/usr/bin/env";
+  argv[1] = NULL;
+
+  execve("/usr/bin/env", argv, NULL);  
+
+  return 0 ;
 }
 ```
 
-#### **Terminal**
-![diferences_of_execev](/Images/diference_from_execev.png)
+![dependencies](/Images/week4-task3-0.png)
+
+- Observamos que não teve ouput
+
+- Agora Alterando ``` execve("/usr/bin/env", argv, NULL); ```  para  ``` execve("/usr/bin/env", argv,environ);  ``` e procedendo para a compilação
+
+![dependencies](/Images/week4-task3-1.png)
+
+- Observamos que as variaveis de ambiente foram passadas
+
+- Concluimos assim que execve com o terceiro parâmetro null não passa as variaveis de ambiente originado um output vazio uma vez que substituimos o terceiro parametro por "environ" no exemplo acima temos de ouput todas as variaveis de ambiente desta forma o "environ" array é utilizado para passar as variaveis de ambiente
 ### Task 4
 
 - quando executamos o codigo mysyms.c verificamos que são passadas as variaveis de ambiente do processo anterior pois o system cria um novo processo que vai buscar as variaveis a execução do system difere da execução do mesmo comando com o excve.
