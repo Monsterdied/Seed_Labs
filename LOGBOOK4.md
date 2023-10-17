@@ -5,6 +5,8 @@
 
 - Usar printenv permite listar todas as variaveis de ambiente
 - Usar export adicionar variaveis de ambiente e unset remove variaveis de ambiente
+### **Terminal**
+![terminal_of_print_env](/Images/printenv.png)
 
 ### Task 2
 - Começamos por compilar e rodar o código que nos dá as variaveis do child process e guardamos num ficheiro
@@ -23,8 +25,9 @@
 
 ### Task 3
 
-- envp é um array de pointers para string , convencionalmente da forma chave = value, que são passados como ambiente do novo programa. Se envp é null as variaveis de ambiente do programa anterior não serão passadas para o excve não tendo variaveis de ambiente.
+- envp é um array de pointers para string , convencionalmente da forma chave = value, que são passados como ambiente do novo programa. Se envp é null as variaveis de ambiente do programa anterior não serão passadas para o excve não tendo variaveis de ambiente para representar quando o comando correr.
 
+![diferences_of_execev](/Images/diference_from_execev.png)
 ### Task 4
 
 - quando executamos o codigo mysyms.c verificamos que são passadas as variaveis de ambiente do processo anterior pois o system cria um novo processo que vai buscar as variaveis a execução do system difere da execução do mesmo comando com o excve.
