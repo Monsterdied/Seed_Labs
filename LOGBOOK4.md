@@ -1,10 +1,15 @@
 # LogBook4
 
 ## Identificação
+### Taks 1
+```
+    printenv
+```
 
 ### Task 2
+- começamos por compilar e rodar o código que nos dá as variaveis do child process e guardamos num ficheiro
 
-- Os ficheiros são iguais pois ambos os processos são executados no mesmo ambiente, pois as variaveis de ambiente são erdadas do processo anterior.
+- Os ficheir são iguais pois ambos os processos são executados no mesmo ambiente, pois as variaveis de ambiente são gerdadas do processo anterior.
 
 ### Task 3
 
