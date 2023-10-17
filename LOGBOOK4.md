@@ -69,7 +69,7 @@ voltaram a funcionar
 
 ![dependencies](/Images/Captura_de_ecrã_2023-10-11_232303.png)
 
-- Pois o printenv roda no processo em que criamos a nova variável de ambiente enquanto que o cdigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variável de ambiente LD_LIBRABRY_PATH
+- Pois o printenv roda no processo em que criamos a nova variável de ambiente enquanto que o cdigo da task2 roda num child da root que vai buscar as variaveis de ambiente ao root e no root não se pode adicionar/alterar esta variável de ambiente LD_LIBRABRY_PATH pois esta variavel de ambiente é utilizada para apontar para bibliotecas dinamicas partilhadas o que iria possibilitar a execução de um programa malizioso com a sua alteração
 
 ![dependencies](/Images/print3.png)
 
