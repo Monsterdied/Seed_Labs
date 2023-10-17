@@ -36,7 +36,8 @@ char *argv[2];
 argv[0] = "/usr/bin/env";
 argv[1] = NULL;
 execve("/usr/bin/env", argv, environ); ➀
-retur
+return 0;
+}
 ```
 
 #### **Terminal**
