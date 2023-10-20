@@ -6,7 +6,7 @@ Ao entrarmos no port 4006 do host ctf-fsi.fe.up.pt, usando o comando `nc ctf-fsi
 
 ![ls](/Images/lsl.png)
 
-Após analisar o conteúdo do admin_note.txt , usando o `cat admin_note.txt`, percebemos que existe uma vulnerabilidade que pode ser explorada na pasta `tmp`, usando um script que corre regularmente no servidor. Podemos aproveitar isso para dar load de uma livraria maliciosa que é executado automáticamente pelo servidor (pois só ele tem as permissões para tal). Na livraria maliciosa podemos dar override à uma das funções que se encontram no main.c (`(my_big_congrats() puts() acess() )` e executar o nosso código malicioso.
+Após analisar o conteúdo do admin_note.txt , usando o `cat admin_note.txt`, percebemos que existe uma vulnerabilidade que pode ser explorada na pasta `tmp`, usando um script que corre regularmente no servidor. Podemos aproveitar isso para dar load de uma livraria maliciosa que é executado automáticamente pelo servidor (pois só ele tem as permissões para tal). Na livraria maliciosa podemos dar override à uma das funções que se encontram no main.c (`(my_big_congrats() puts() acess() )` e executar o nosso código malicioso, obtendo assim a flag.
 
 
 ```
