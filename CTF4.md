@@ -88,7 +88,7 @@ int access(const char *pathname, int mode){
 } ' >> access.c
 ```
 
-Podemos aproveitar para fazer `touch ll.txt` e `chmod 777 ll.txt`
+Podemos aproveitar para fazer `touch ll.txt` e `chmod 777 ll.txt` só para evitar problemas que possam surgir.
 
 Agora vamos criar a tal livraria maliciosa:
 
