@@ -176,4 +176,4 @@ Por fim executamos o código:
 
 E obtivemos:
 
-![shell2](Imagens/shell2.png)
+![shell2](Images/shell2.png)
