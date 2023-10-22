@@ -50,6 +50,29 @@ Após analisar o ficheiro stack.c, reparamos que a vulnerabilidade tratava-se do
 
 Também reparamos que executando o make, é criado vários ficheiro do género stack-Lx , onde x varia entre 1 e 4. A diferença entre estes ficheiros é o valor do BUF_SIZE.
 
+![files](Images/files.png)
+
 ## Task 3
 
+Primeiramente, criamos um ficheiro badfile e executamos o make para criar os ficheiros necessários para fazer debug,e executamos os seguintes comandos:
 
+```
+$ touch badfile 
+$ gdb stack-L1-dbg 
+...
+gdb-peda$ b bof 
+...
+gdb-peda$ run 
+...
+gdb-peda$ next 
+...
+gdb-peda$ p $ebp # Obtemos o valor do ebp
+$1 = (void *) 0xffffcaf8
+gdb-peda$ p &buffer # Obtemos o endereço do início do buffer
+$2 = (char (*)[100]) 0xffffca8c
+```
+
+![code1](Images/code1.png)
+![code1](Images/code2.png)
+
+Após obtermos os valores necessários, 
