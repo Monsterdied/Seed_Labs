@@ -46,5 +46,10 @@ Ao executar este ficheiro usando o `make`, reparamos que é criado 2 ficheiros `
 
 ## Task 2
 
+Após analisar o ficheiro stack.c, reparamos que a vulnerabilidade tratava-se do seguinte: a função strcpy é usada para copiar o conteúdo do parâmetro str para o array buffer. No entanto, a função strcpy não tem verificação para garantir que o tamanho da string (que pode ter até um máximo de 517) não exceda o tamanho do buffer (BUF_SIZE = 100). Se o comprimento da stringstr for maior que o tamanho do buffer, irá substituir a memória adjacente, levando a um comportamento inesperado, que neste caso podemos aproveitar para explorar a vulnerabilidade.
+
+Também reparamos que executando o make, é criado vários ficheiro do género stack-Lx , onde x varia entre 1 e 4. A diferença entre estes ficheiros é o valor do BUF_SIZE.
+
+## Task 3
 
 
