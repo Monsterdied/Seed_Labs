@@ -153,6 +153,11 @@ Obtivemos o seguinte resultado:
 
 ![countermeasure](Images/countermeasure.png)
 
+Após alguma pesquisa no site php net manual encontramos o seguinte comando que dava o mesmo error output que está a aparecer no site (https://www.php.net/manual/en/mysqli.quickstart.multiple-statement.php).
+
+![error](Images/error.png)
+
+O comando impede a existencia de vários comandos sql numa só string.
 
 ## Task 3
 
@@ -163,7 +168,7 @@ Entrando através do perfil da alice ,usando o sql injection (username input = a
 
 ![profile](Images/profile.png)
 
-Após verificar o ficheiro unsafe_edit_backend.php, concluímos que tal como na login page, as inputs boxes também não tem sanitização e os comandos sql são feitos com strings. Sabendo isso, no input phone number (escolhemos este pois estava mais para o fim do código, evitando assil stresses desnecessários) escrevemos `933281036',Salary='69420`.
+Após verificar o ficheiro unsafe_edit_backend.php, concluímos que tal como na login page, as inputs boxes também não tem sanitização e os comandos sql são feitos com strings. Sabendo isso, no input phone number (escolhemos este pois estava mais para o fim do código sql, evitando assim stresses desnecessários) escrevemos `933281036',Salary='69420`.
 Em princípio o servidor vai executar o seguinte código:
 ```sql
 UPDATE credential SET
