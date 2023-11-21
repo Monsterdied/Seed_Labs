@@ -44,7 +44,7 @@ int main() {
 }
 
 ```
-- podemos ver que o scan f esta desprotegido e que o scanf vai imprimir na shell 32 bytes e que o buffer com a flag é uma variavel global, quando nos corremos o codigo checksec temos este output
+- podemos ver que o scanf esta desprotegido não é efetuada sanatização de um buffer que é utilizado fornecido pelo utilizador(o que nos deixa aplicar a vulnerabilidade do format string), que o scanf vai imprimir na shell 32 bytes e que o buffer com a flag é uma variavel global , quando nos corremos o codigo checksec temos este output
 
 ```shell
 [*] '/home/seed/Downloads/Semana7-Desafio1/program'
@@ -99,7 +99,7 @@ p &flag
 
 ![Alt text](Images/image74.png)
 
-- Nos ja temos informações necessárias para o ataque 
+- Nos executamos o codigo multiplas vezes e verificamos que o endereço era estatico com isso nos ja temos informações necessárias para o ataque 
 - agora nos so temos de descobrir o offset alteramos uma linha de codigo para saber onde é que nos começavamos a encontrar os elementos do printf
 ```py
 p.sendline(b"AAAA%.8x%.8x")
@@ -142,5 +142,46 @@ p.interactive()
 - dando o seguinte resultado 
 
 ![Alt text](Images/image-73.png)
+
 ## CTF part 2
 
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+char pad[2] = "\x00\x00";
+int key = 0;
+
+int main() {
+   
+    char buffer[32];
+
+    printf("There is nothing to see here...");
+    fflush(stdout);
+    scanf("%32s", &buffer);
+    printf("You gave me this:");
+    printf(buffer);
+    fflush(stdout);
+
+    if(key == 0xbeef) {
+        printf("Backdoor activated\n");
+        fflush(stdout);
+        system("/bin/bash");    
+    } else {
+    	printf("\n\n\nWrong key: %d\n", key);
+	fflush(stdout);
+    }
+        
+    return 0;
+}
+```
+- Este é o main contido pelo zip do desafio 2 so com isto conseguimos ver que este codigo contem a mesma vulnerabilidade que é o scanf imprime diretamente codigo do utilizador sem sanatização conseguimos ver que para conseguirmos a flag nos temos que alterar o valor a key para 0xbeef que em hexadecimal é 48879 
+- para ver quais as proteções do programa vamos correr o checksec que da este output
+![Alt text](image.png)
+
+- com isto sabemos que estamos outravez diante um addresing com little edian de 32 bits
+- proseguimos a encontrar o address da variavel global key utilizando o gdb tal como no exercicio anterior
+
+![Alt text](image-1.png)
+
+- executamos o gdb multiplas vezes e reparamos que o address não se altera e que tem o address com 7 characters porque o primeiro é zero ficando com o address 0x0804b324 como o address esta em little edian o address que vamos utilizar é 0x24 0xb3 0x04 0x08
