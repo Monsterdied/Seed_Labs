@@ -177,11 +177,20 @@ int main() {
 ```
 - Este é o main contido pelo zip do desafio 2 so com isto conseguimos ver que este codigo contem a mesma vulnerabilidade que é o scanf imprime diretamente codigo do utilizador sem sanatização conseguimos ver que para conseguirmos a flag nos temos que alterar o valor a key para 0xbeef que em hexadecimal é 48879 
 - para ver quais as proteções do programa vamos correr o checksec que da este output
-![Alt text](image.png)
+![Alt text](Images/image8-3.png)
 
 - com isto sabemos que estamos outravez diante um addresing com little edian de 32 bits
 - proseguimos a encontrar o address da variavel global key utilizando o gdb tal como no exercicio anterior
 
-![Alt text](image-1.png)
+![Alt text](Images/image8-1.png)
 
 - executamos o gdb multiplas vezes e reparamos que o address não se altera e que tem o address com 7 characters porque o primeiro é zero ficando com o address 0x0804b324 como o address esta em little edian o address que vamos utilizar é 0x24 0xb3 0x04 0x08
+ - nos mudamos o exploit mudado anterior nestas duas linhas , nos usamos os primeiros 4 characteres para dar um buffer de 32 bits para conseguirmos usar um %.{offset}x em que o offseet é o valor desejado em decimal que é 48879
+o offset vai ser 48879 - 4(buffer dos AAAA) - 4 (o Address em si) = 48871 pois o %n vai contar o numero de bytes imprimidos e guardalos no endereço a que esta a apotar neste caso \x24\xb3\x04\x08%
+ ```
+    p = remote("ctf-fsi.fe.up.pt", 4005)
+    p.sendline(b"AAAA\x24\xb3\x04\x08%.48871x%n")
+ ```
+ - executando o exploit danos este output
+
+![Alt text](Images/image8-2.png)
