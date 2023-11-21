@@ -75,5 +75,34 @@ nvh: 11
 cmu: 11
 tmq: 10
 vhp: 10
+```
+Após uma análise muito profunda, utilizando os websites https://en.wikipedia.org/wiki/Frequency_analysis , https://en.wikipedia.org/wiki/Bigram , https://en.wikipedia.org/wiki/Trigram :
 
+```txt
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n -> e
+o
+p -> d
+q
+r
+s
+t -> h
+u -> n
+v -> a
+w
+x
+y -> t
+z
 ```
