@@ -175,7 +175,7 @@ int main() {
     return 0;
 }
 ```
-- Este é o main contido pelo zip do desafio 2 so com isto conseguimos ver que este codigo contem a mesma vulnerabilidade que é o scanf imprime diretamente codigo do utilizador sem sanatização conseguimos ver que para conseguirmos a flag nos temos que alterar o valor a key para 0xbeef que em hexadecimal é 48879 
+- Este é o main contido pelo zip do desafio 2 so com isto conseguimos ver que este codigo contem a mesma vulnerabilidade que é o scanf imprime diretamente codigo do utilizador sem sanatização conseguimos ver que para conseguirmos a flag nos temos que alterar o valor a key para 0xbeef que em hexadecimal é 48879 se conseguirmos fazer isso temos acesso a shell e depois podemos dar cat flag.txt
 - para ver quais as proteções do programa vamos correr o checksec que da este output
 ![Alt text](Images/image8-3.png)
 
@@ -191,6 +191,6 @@ o offset vai ser 48879 - 4(buffer dos AAAA) - 4 (o Address em si) = 48871 pois o
     p = remote("ctf-fsi.fe.up.pt", 4005)
     p.sendline(b"AAAA\x24\xb3\x04\x08%.48871x%n")
  ```
- - executando o exploit danos este output
+ - executando o exploit que nos da acesso a shell podendo depois dar cat flag.txt para termos a flag
 
 ![Alt text](Images/image8-2.png)
