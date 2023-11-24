@@ -1,7 +1,6 @@
-
 ## CTF Part 1
 
-- para sabermos com o que estamos a lidar nos demos uma vista de olhos no main.c
+- para sabermos com o que estamos a lidar demos uma vista de olhos no main.c
 ```c
 
 #include <stdio.h>
@@ -44,7 +43,7 @@ int main() {
 }
 
 ```
-- podemos ver que o scanf esta desprotegido não é efetuada sanatização de um buffer que é utilizado fornecido pelo utilizador(o que nos deixa aplicar a vulnerabilidade do format string), que o scanf vai imprimir na shell 32 bytes e que o buffer com a flag é uma variavel global , quando nos corremos o codigo checksec temos este output
+- podemos ver que o scanf esta desprotegido, isto é não é efetuada sanitização de um buffer que é utilizado fornecido pelo utilizador(o que nos deixa aplicar a vulnerabilidade do format string), que o scanf vai imprimir na shell 32 bytes e que o buffer com a flag é uma variavel global , quando nos corremos o codigo checksec temos este output
 
 ```shell
 [*] '/home/seed/Downloads/Semana7-Desafio1/program'
@@ -55,7 +54,7 @@ int main() {
     PIE:      No PIE (0x8048000)
 
 ```
-- Com isto nos sabemos que o endereçamento utilizado é little edian
+- Com isto nos sabemos que o endereçamento utilizado é little endian
 - para obter o endereço do buufer com a flag nos usamos alguns comando do edb para fazermos isso inicialmente nos usamos o exploit template que nos foi fornecido  
 ```c
 from pwn import *
