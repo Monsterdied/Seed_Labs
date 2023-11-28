@@ -334,3 +334,20 @@ bad decrypt
 ```
 
 ## Task 3
+
+Primeiramente vamos encriptar a imagem usando os modos ECB e CBC:
+
+![ecb](Images/ecb.png)
+
+![cbc](Images/cbc.png)
+
+Como mencionado, para um ficheiro .bmp, os primeiros 54 bytes contêm informações do cabeçalho. Vamos querer substituir o cabeçalho da imagem criptografada pelo do arquivo original para torná-lo visível como um ficheiro .bmp lválido.
+
+![Alt text](Images/bless.png)
+
+Podemos observar os resultados abaixo , respetivamente ecb e cbc. Podemos observar que existe um pattern de encriptação no ECB, onde podemos observar uma silhueta do oval e do retângulo. 
+No caso do CBC, não é nítida qualquer tipo de pattern.
+
+![Alt text](Images/newecb.png)
+
+![Alt text](Images/newcbc.png)
