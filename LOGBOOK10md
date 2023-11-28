@@ -1,4 +1,4 @@
-# LOGBOOK 8 Secret Key Encryption
+# LOGBOOK 10 Secret Key Encryption
 
 ## Setup
 
@@ -294,4 +294,41 @@ CONVOCADOS DA PARTE DO TONANTE
 PELO NETO GENTIL DO VELHO ATLANTE
 ```
 
+## Task 2
 
+Usando `man enc`, conseguimos descobrir que tipo de cyphers são suportados :
+
+![encry](Images/encry.png)
+
+
+Utilizamos os seguintes modos de encryptação:
+
+```cmd
+//1.  aes-128-cbc
+
+openssl enc -aes-128-cbc -e -in out1.txt -out out1.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+openssl enc -aes-128-cbc -d -in out1.bin -out out1_decrypt.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+
+//2. bf-cbc
+
+openssl enc -bf-cbc -e -in out1.txt -out out1.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+openssl enc -bf-cbc -d -in out1.bin -out out1_decrypt.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+//3.  cast-cbc
+
+openssl enc -cast-cbc -e -in out1.txt -out out1.bin -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+
+openssl enc -cast-cbc -d -in out1.bin -out out1_decrypt.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
+```
+
+Ao encriptarmos os 3 ficheiros, perdemos a abilidade de verificar a encriptação, mas ao desencriptá-los de volta, o texto desencriptado é igual ao texto original.
+
+Também reparamos que se desencriptarmos com um modo diferente do que usamos para encriptar, dá o seguinte erro:
+
+```
+bad decrypt
+140737347949888:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:crypto/evp/evp_enc.c:583:
+```
