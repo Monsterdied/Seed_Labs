@@ -323,7 +323,7 @@ openssl enc -cast-cbc -e -in out1.txt -out out1.bin -K 00112233445566778889aabbc
 
 openssl enc -cast-cbc -d -in out1.bin -out out1_decrypt.txt -K 00112233445566778889aabbccddeeff -iv 0102030405060708
 ```
-
+![encripted](Images/encripted.png)
 Ao encriptarmos os 3 ficheiros, perdemos a abilidade de verificar a encriptação, mas ao desencriptá-los de volta, o texto desencriptado é igual ao texto original.
 
 Também reparamos que se desencriptarmos com um modo diferente do que usamos para encriptar, dá o seguinte erro:
@@ -332,3 +332,5 @@ Também reparamos que se desencriptarmos com um modo diferente do que usamos par
 bad decrypt
 140737347949888:error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt:crypto/evp/evp_enc.c:583:
 ```
+
+## Task 3
