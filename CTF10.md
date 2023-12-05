@@ -5,12 +5,12 @@
 - Antes de iniciarmos o desafio, tivemos de ativar a vpn e fazer download do cipherspec.py onde é revelada o algoritmo que utilizam para encriptar e 
 desencriptar. 
 Correr este codigo para obter a ciphertext e a nounce aqui está cifrada a nossa flag
-![Alt text](imageCTF10-4.png)
+![Alt text](Images/imageCTF10-4.png)
 
 ## Análise
 - Após analisar o cipherspec.py descobrimos que a geração da chave apenas cria as 3 bytes menos significantes de maneira aleatória mantendo as restante 0x00 assim ficando vulneravel a bruteforce uma vez que existem apenas 2^(8*3) = 16777216
 combinações 
-![Alt text](imageCTF10-5.png)
+![Alt text](Images/imageCTF10-5.png)
 
 ## Exploit
 
@@ -38,4 +38,4 @@ for i in range(0,16777216):
 
 ```
 
-![Alt text](imageCTF10-6.png)
+![Alt text](Images/imageCTF10-6.png)
