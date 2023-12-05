@@ -14,7 +14,7 @@ $ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
 ```
 
 - para sabes os containers que estão a ser utilizados dando este resultado
-![Alt text](image.png)
+![Alt text](Images/image11.png)
 
 ## Task 1
 - Usando este codigo nos copiamos a openssl.conf presente na presente em `/usr/lib/ssl/openssl.cnf` para a directory atual que estou com o nome myopenssl.conf pois nos vamos fazer mudanças deste ficheiro
@@ -55,9 +55,10 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
 - Using this command we can see the information of the public key `openssl x509 -in ca.crt -text -noout
 ` e utilizando este codigo `openssl rsa -in ca.key -text -noout` podemos ver a chave privada rsa utilizando estes dois outputs podemos tirar algumas conclusões
 - Atraves deste output podemos saber que é um AC valido 'CA: TRUE'
-![Alt text](image-1.png)
+![Alt text](Images/image-111.png)
 - Sabemos que este certificado foi utilizado por si proprio e porque tanto o signature algorithm como o subject são os mesmos.
-![Alt text](image-2.png)
+![Alt text](Images/image-112.png)
 - Cheking the rsa files we can see that
-- The expoenecial is this
-![Alt text](image-3.png)
+- The public expoent is this
+![Alt text](Images/image-113.png)
+- The 
