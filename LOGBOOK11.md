@@ -1,4 +1,4 @@
-# LOGBOOK 8 Public-Key Infrastructure (PKI)
+# LOGBOOK 11 Public-Key Infrastructure (PKI)
 ## Setup
 - Começando o setup na pasta do lab, vamos mudar de pasta para "LabSetup" e executamos os códigos para dar build ao servidor local e para colocar o servidor a rodar, utilizando os seguintes códigos:
 
