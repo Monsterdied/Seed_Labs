@@ -14,6 +14,7 @@ $ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
 ```
 
 - para sabes os containers que estão a ser utilizados dando este resultado
+
 ![Alt text](Images/image11.png)
 
 ## Task 1
@@ -55,17 +56,29 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
 - Using this command we can see the information of the public key `openssl x509 -in ca.crt -text -noout
 ` e utilizando este codigo `openssl rsa -in ca.key -text -noout` podemos ver a chave privada rsa utilizando estes dois outputs podemos tirar algumas conclusões
 - Atraves deste output podemos saber que é um AC valido 'CA: TRUE'
+
 ![Alt text](Images/image-111.png)
-- Sabemos que este certificado foi utilizado por si proprio e porque tanto o signature algorithm como o subject são os mesmos.
+
+- Sabemos que este certificado foi utilizado por si proprio e porque tanto o signature algorithm como o subject são 
+os mesmos.
+
 ![Alt text](Images/image-112.png)
+
 - Cheking the rsa files we can see that we have
 - The public expoent is
+
 ![Alt text](Images/image-113.png)
+
 - The private expoent
+
 ![Alt text](Images/image10-.png)
+
 - The modulus 
+
 ![Alt text](Images/image10-1.png)
+
 - The two numbers prime
+
 ![Alt text](Images/image10-2.png)
 
 ## Task 2
@@ -84,7 +97,10 @@ DNS:www.gta6B.com"
  openssl req -in server.csr -text -noout
  ```
  - com este output
-![Alt text](Images/image-3.png)
+
+![Alt text](Images/image-113.png)
+
+
  - para ver a chave publica usamos este codigo
  ```
  openssl rsa -in server.key -text -noout
@@ -202,5 +218,129 @@ copy_extensions = copy
             X509v3 Subject Alternative Name: 
                 DNS:www.gta6.com, DNS:www.gta6A.com, DNS:www.gta6B.com
 ....
-``` 
+```
+
 ## Task 4
+- modificamos o bank32
+```
+<VirtualHost *:443> 
+    DocumentRoot /var/www/gta6
+    ServerName www.gta6.com
+    ServerAlias www.gta6A.com
+    ServerAlias www.gta6B.com
+    DirectoryIndex index.html
+    SSLEngine On 
+    SSLCertificateFile /volumes/gta6.crt
+    SSLCertificateKeyFile /volumes/gta6.key
+</VirtualHost>
+
+```
+
+- este é o dockerfile
+
+```
+FROM handsonsecurity/seed-server:apache-php
+
+ARG WWWDIR=/var/www/gta6
+
+COPY ./index.html ./index_red.html $WWWDIR/
+COPY ./gta6_apache_ssl.conf /etc/apache2/sites-available
+COPY ./certs/bank32.crt ./certs/bank32.key  /certs/
+
+RUN  chmod 400 /certs/bank32.key \
+     && chmod 644 $WWWDIR/index.html \
+     && chmod 644 $WWWDIR/index_red.html \
+     && a2ensite gta6_apache_ssl   
+
+CMD  tail -f /dev/null
+
+
+```
+
+ - the we use the docker comands to atach a shell to the docker 
+```bash
+
+[12/10/23]seed@VM:~/.../volumes$ dockps
+26d340a3fb58  www-10.9.0.80
+[12/10/23]seed@VM:~/.../volumes$ dockpsh 26
+dockpsh: command not found
+[12/10/23]seed@VM:~/.../volumes$ docksh 26
+
+```
+ - then we ran the server in the shell of the docker we type the password
+ ```bash
+
+  root@26d340a3fb58:/# service apache2 start
+ * Starting Apache httpd web server apache2                                                                                                                    Enter passphrase for SSL/TLS keys for www.gta6.com:443 (RSA):
+ * 
+ 
+ ```
+- when we access the site we get this
+
+![Alt text](Images/ima1ge.png)
+
+ - Now that i removed the exection permanent from the browser to make the broser check the certificate again that
+![Alt text](Images/ima1ge-2.png)
+
+ - we imported the ca certificate to the browser and now we have a secure connection
+
+![Alt text](Images/ima1ge-1.png)
+
+## Task5
+- Mudamos o ficheiro antigo gta6_apache_ssl.conf para estar assim
+```
+<VirtualHost *:443> 
+    DocumentRoot /var/www/gta6
+    ServerName www.example.com,
+    ServerAlias www.gta6A.com
+    ServerAlias www.gta6B.com
+    DirectoryIndex index.html
+    SSLEngine On 
+    SSLCertificateFile /volumes/gta6.crt
+    SSLCertificateKeyFile /volumes/gta6.key
+</VirtualHost>
+
+```
+- We run
+```
+sudo nano  hosts # mudamos a primeira entrada para 10.9.0.80
+
+```
+- quando acedemos ao site da este warning
+
+![Alt text](Images/ima1ge-3.png)
+
+ - Avançamos e continua assim podemos ver que o site é inseguro porque o dominio do website não coincide com o dominio do certificado
+
+![Alt text](Images/ima1ge-4.png)
+ - o dominio do site nao coincide com o dominio do certificado logo é inseguro 
+
+## Task 6 
+
+- Se o Ca estiver comprometido nos podemos utiliza-lo para criar criar certificados para um site malicioso. para fazer isso nos utilizamos o codigo da tarefa2 e da tarfa 3 com as diferenças do dominio
+```
+openssl req -newkey rsa:2048 -sha256 \
+-keyout example.key -out example.csr \
+-subj "/CN=www.example.com/O=example Inc./C=US" \
+-passout pass:1234
+
+ openssl ca -config myopenssl.cnf -policy policy_anything -md sha256 -days 3650 -in example.csr -out example.crt -batch -cert ca.crt -keyfile ca.key
+
+```
+ - colocamos os certificados novos do site na pasta volumes e alteramos o gta6_apache_ssl.conf para 
+
+ ```
+ <VirtualHost *:443> 
+    DocumentRoot /var/www/gta6
+    ServerName www.example.com,
+    ServerAlias www.gta6A.com
+    ServerAlias www.gta6B.com
+    DirectoryIndex index.html
+    SSLEngine On 
+    SSLCertificateFile /volumes/example.crt
+    SSLCertificateKeyFile /volumes/example.key
+</VirtualHost>
+ ```
+ - Assim esta o site sem erros de segurança alguns
+ 
+ ![Alt text](Images/ima1ge-6.png)
