@@ -6,7 +6,10 @@
 $ docker-compose build # Build the container image
 $ docker-compose up # Start the container
 ```
-
+ - adicionamos o site gta6.com aos hosts com este comando
+ ```shell
+    sudo nano hosts # adicionamos a primeira linha 10.9.0.80 www.gta6.com
+```
 - abrindo outro terminal e depois de executado o comando 
 
 ```shell
@@ -303,7 +306,7 @@ dockpsh: command not found
 ```
 - We run
 ```
-sudo nano  hosts # mudamos a primeira entrada para 10.9.0.80
+sudo nano  hosts # mudamos a primeira entrada para 10.9.0.80 www.example.com
 
 ```
 - quando acedemos ao site da este warning
