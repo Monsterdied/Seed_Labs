@@ -1,32 +1,31 @@
 # LOGBOOK 8 Public-Key Infrastructure (PKI)
 ## Setup
-- Começando o setup na pasta do lab, vamos mudar de pasta para a pasta "LabSetup" e executamos os codigos para dar build ao servidor  local e para colocar o servidor a rodar, utilizando os seguintes codigos
+- Começando o setup na pasta do lab, vamos mudar de pasta para "LabSetup" e executamos os códigos para dar build ao servidor local e para colocar o servidor a rodar, utilizando os seguintes códigos:
 
 ```shell
 $ docker-compose build # Build the container image
 $ docker-compose up # Start the container
 ```
- - adicionamos o site gta6.com aos hosts com este comando
+ - Adicionamos o site gta6.com ao ficheiro hosts com este comando:
+
  ```shell
     sudo nano hosts # adicionamos a primeira linha 10.9.0.80 www.gta6.com
 ```
-- abrindo outro terminal e depois de executado o comando 
+- Abrindo outro terminal, e depois executando o comando para saber os containers que estão a ser utilizados, dando o seguinte resultado:
 
 ```shell
 $ dockps // Alias for: docker ps --format "{{.ID}} {{.Names}}"
 ```
 
-- para sabes os containers que estão a ser utilizados dando este resultado
-
 ![Alt text](Images/image11.png)
 
 ## Task 1
-- Usando este codigo nos copiamos a openssl.conf presente na presente em `/usr/lib/ssl/openssl.cnf` para a directory atual que estou com o nome myopenssl.conf pois nos vamos fazer mudanças deste ficheiro
+- Usando este código, nós copiamos a openssl.conf presente na presente em `/usr/lib/ssl/openssl.cnf` para a nossa folder atual que estou com o nome myopenssl.conf pois vamos realizar mudanças neste ficheiro para permitir a realização de tasks seguintes:
 
 ```shell
 cp /usr/lib/ssl/openssl.cnf  myopenssl.cnf
 ```
-- Para permitir criar certificados digitais nos descomentamos esta linha do ficheiro `unique_subject	=   no` ficando com o ficheiro assim
+- Para permitir criar certificados digitais nós descomentamos esta linha do ficheiro `unique_subject	=   no`, ficando com o ficheiro da seguinte maneira
 ```
 [ CA_default ]
 
@@ -36,15 +35,14 @@ crl_dir		= $dir/crl		# Where the issued crl are kept
 database	= $dir/index.txt	# database index file.
 unique_subject	= no			# Set to 'no' to allow creation of
 ```
- - We also create a folder where we do everything we create inside a empty file index.txt and a file with the number 1000 serial
-- Now to create a Certificate Authority (CA) we ran this code
+ - Também criamos uma pasta onde colocamos tudo o que criamos, dentro de um ficheiro vazio chamado index.txt e um ficheiro com o número de série 1000.
+- Agora, para criar uma Autoridade de Certificação (CA), executamos este código:
 ```
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
 -keyout ca.key -out ca.crt
 
 ```
- - We filled the certificate with the following data
-
+ - Preenchemos o certificado com os seguintes dados:
  ```
  PEM Pass Phrase : 1234
  Country: Pt
@@ -56,18 +54,19 @@ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
  Email: Mira@example.com
  
  ```
-- Using this command we can see the information of the public key `openssl x509 -in ca.crt -text -noout
-` e utilizando este codigo `openssl rsa -in ca.key -text -noout` podemos ver a chave privada rsa utilizando estes dois outputs podemos tirar algumas conclusões
-- Atraves deste output podemos saber que é um AC valido 'CA: TRUE'
+- Com este comando, podemos visualizar as informações da chave pública `openssl x509 -in ca.crt -text -noout` e ao utilizar este código `openssl rsa -in ca.key -text -noout`, podemos examinar a chave privada RSA. Ao analisarmos ambas as saídas, podemos inferir algumas conclusões.
+
+- Através deste output podemos saber que é um AC válido 'CA: TRUE'
 
 ![Alt text](Images/image-111.png)
 
-- Sabemos que este certificado foi utilizado por si proprio e porque tanto o signature algorithm como o subject são 
+- Sabemos que este certificado foi utilizado por si próprio,porque tanto o signature algorithm como o subject são 
 os mesmos.
 
 ![Alt text](Images/image-112.png)
 
-- Cheking the rsa files we can see that we have
+- Verificando o ficheiro rsa, obtivemos os seguintes dados:
+
 - The public expoent is
 
 ![Alt text](Images/image-113.png)
@@ -85,7 +84,7 @@ os mesmos.
 ![Alt text](Images/image10-2.png)
 
 ## Task 2
- - Para gerar um csr (certificate signing request) para o site gta6.com nos usamos este comando
+ - Para gerar um csr (certificate signing request) para o site gta6.com, usamos este comando:
 ```
 openssl req -newkey rsa:2048 -sha256 \
 -keyout server.key -out server.csr \
@@ -94,21 +93,21 @@ openssl req -newkey rsa:2048 -sha256 \
 DNS:www.gta6A.com, \
 DNS:www.gta6B.com"
 ```
- - nos geramos um par de chaves publicas e privadas para as aceder executamos os codigos seguintes 
- - para ver a private key usamos este codigo 
+ - Nós geramos um par de chaves públicas e privadas. para as aceder executamos os códigos seguintes 
+
+ - Para ver a chave privada usamos:
  ```
  openssl req -in server.csr -text -noout
  ```
- - com este output
 
 ![Alt text](Images/image-113.png)
 
 
- - para ver a chave publica usamos este codigo
+ - Para ver a chave pública usamos:
  ```
  openssl rsa -in server.key -text -noout
  ```
- - que nos da este output
+ - Que nos dá este output
  ```
  Enter pass phrase for server.key:
 RSA Private-Key: (2048 bit, 2 primes)
@@ -205,17 +204,16 @@ coefficient:
 
 ## Task 3
 
- - We used this code to run our myopenssl.cnf
+ - Utilizamos este código para executar o nosso ficheiro myopenssl.cnf.
  ```
  openssl ca -config myopenssl.cnf -policy policy_anything -md sha256 -days 3650 -in server.csr -out server.crt -batch -cert ca.crt -keyfile ca.key
  ```
-- we uncommented this line of code in the myopen.cnf 
-para permitir copiar extenções
+- Descomentamos esta linha de código no ficheiro myopen.cnf para permitir a cópia de extensões.
 ```openssl
 # Extension copying option: use with caution.
 copy_extensions = copy
 ```
- - we get an output. here is a snippet with the different names of the site 
+ - Recebemos um output:
 ```
 ....
             X509v3 Subject Alternative Name: 
@@ -224,7 +222,7 @@ copy_extensions = copy
 ```
 
 ## Task 4
-- modificamos o bank32
+- Modificamos o bank32_apache_ssl.conf para que o certificado e chave usados sejam os da pasta partilhada:
 ```
 <VirtualHost *:443> 
     DocumentRoot /var/www/gta6
@@ -239,7 +237,7 @@ copy_extensions = copy
 
 ```
 
-- este é o dockerfile
+- Este é o dockerfile:
 
 ```
 FROM handsonsecurity/seed-server:apache-php
@@ -260,7 +258,7 @@ CMD  tail -f /dev/null
 
 ```
 
- - the we use the docker comands to atach a shell to the docker 
+ -Então, utilizamos os comandos do Docker para anexar um terminal (shell) ao container Docker.
 ```bash
 
 [12/10/23]seed@VM:~/.../volumes$ dockps
@@ -270,7 +268,7 @@ dockpsh: command not found
 [12/10/23]seed@VM:~/.../volumes$ docksh 26
 
 ```
- - then we ran the server in the shell of the docker we type the password
+ - Em seguida, iniciamos o servidor no terminal do Docker e inserimos a palavra-passe quando solicitado.
  ```bash
 
   root@26d340a3fb58:/# service apache2 start
@@ -278,14 +276,14 @@ dockpsh: command not found
  * 
  
  ```
-- when we access the site we get this
+- Quando acedemos ao site, recebemos isto:
 
 ![Alt text](Images/ima1ge.png)
 
- - Now that i removed the exection permanent from the browser to make the broser check the certificate again that
+ - Agora que removi a execução permanente do navegador para que este verifique novamente o certificado:
 ![Alt text](Images/ima1ge-2.png)
 
- - we imported the ca certificate to the browser and now we have a secure connection
+ - Importámos o certificado da CA para o navegador e agora temos uma ligação segura.
 
 ![Alt text](Images/ima1ge-1.png)
 
@@ -304,23 +302,23 @@ dockpsh: command not found
 </VirtualHost>
 
 ```
-- We run
+- Executamos:
 ```
 sudo nano  hosts # mudamos a primeira entrada para 10.9.0.80 www.example.com
 
 ```
-- quando acedemos ao site da este warning
+- Quando acedemos ao site, dá este warning
 
 ![Alt text](Images/ima1ge-3.png)
 
- - Avançamos e continua assim podemos ver que o site é inseguro porque o dominio do website não coincide com o dominio do certificado
+ - Avançamos e continua assim podemos ver que o site é inseguro porque o domínio do website não coincide com o domínio do certificado
 
 ![Alt text](Images/ima1ge-4.png)
- - o dominio do site nao coincide com o dominio do certificado logo é inseguro 
+ 
 
 ## Task 6 
 
-- Se o Ca estiver comprometido nos podemos utiliza-lo para criar criar certificados para um site malicioso. para fazer isso nos utilizamos o codigo da tarefa2 e da tarfa 3 com as diferenças do dominio
+- Se o Ca estiver comprometido nós podemos utilizá-lo para criar criar certificados para um site malicioso. Para fazer isso, nós utilizamos o código da tarefa2 e da tarefa3 com as diferenças do domínio:
 ```
 openssl req -newkey rsa:2048 -sha256 \
 -keyout example.key -out example.csr \
@@ -330,7 +328,7 @@ openssl req -newkey rsa:2048 -sha256 \
  openssl ca -config myopenssl.cnf -policy policy_anything -md sha256 -days 3650 -in example.csr -out example.crt -batch -cert ca.crt -keyfile ca.key
 
 ```
- - colocamos os certificados novos do site na pasta volumes e alteramos o gta6_apache_ssl.conf para 
+ - Colocamos os certificados novos do site na pasta volumes e alteramos o gta6_apache_ssl.conf para:
 
  ```
  <VirtualHost *:443> 
@@ -344,6 +342,6 @@ openssl req -newkey rsa:2048 -sha256 \
     SSLCertificateKeyFile /volumes/example.key
 </VirtualHost>
  ```
- - Assim esta o site sem erros de segurança alguns
+ - Assim esta o site sem erros de segurança.
  
  ![Alt text](Images/ima1ge-6.png)
