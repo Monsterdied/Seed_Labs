@@ -109,3 +109,18 @@ PermissionError: [Errno 1] Operation not permitted
 Quando é executado sem privilégios de root, o programa não possui as permissões necessárias para aceder à interface de rede e, por conseguinte, não consegue capturar pacotes com sucesso.
 
 ## Task 1.1B
+
+Para o primeiro, Capture only the ICMP packet, este já está feito, como demonstrado anteriormente:
+
+Para o segundo, trocamos:
+
+```py
+
+pkt = sniff(iface='br-1f43b629af2f', filter='icmp', prn=print_pkt)
+
+#por
+
+pkt = sniff(iface='br-1f43b629af2f', filter='tcp && host 10.9.0.5 && port 23', prn=print_pkt)
+
+```
+
